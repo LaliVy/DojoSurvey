@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Dojo Survey Index</title>
+        <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='dojoSurvey.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="mainContainer">
+
+            <form action='/registration' method='post'>
+               <table>
+                   <tr>
+                       <td class='left font'>Your Name:</td>
+                       <td><input type="text" name="name" class='form-control'></td>
+                   </tr>
+                   <tr>
+                        <td class='left font'>Dojo Location:</td>
+                        <td class='left font'>
+                            <select name='location' class='form-control'>
+                                {% for row in locList %}
+                                    <option>{{ row['name']}}</option>
+                                {% endfor %}
+                                <!-- <option>Seattle</option>
+                                <option>LA</option> -->
+                            </select>
+                        </td>
+                   </tr>
+                   <tr>
+                        <td class='left font'>Favorite Language</td>
+                        <td>
+                            <select name='language' class='form-control'>
+                                {% for row in skillsList %}
+                                    <option>{{ row['name']}}</option>
+                                {% endfor %}
+                                <!-- <option>Java</option>
+                                <option>C</option> -->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class='left font'>Comment (Optional)</td>
+                    </tr> 
+                    <tr>
+                        <td colspan="2"><textarea name='comment' class='text-area form-control'></textarea></td>
+                    </tr>  
+                        <td colspan="2"><input type='submit' name='submit' value='Button' class='btn btn-primary btn-lg'></td>
+                    </tr>  
+               </table>
+            </form>
+        </div>
+    </body>
+</html>
